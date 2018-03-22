@@ -1,0 +1,20 @@
+LevelMapping
+    a > cannon 
+    b > spawnHorzL 
+    c > avatar 
+    d > spawnHorzR 
+    e > spawnRandom 
+    f > spawnHorzU 
+
+LevelDescription
+            a 
+        bc    
+              
+d    a        
+          e   
+a             
+    f         
+              
+       e      
+              
+     b        

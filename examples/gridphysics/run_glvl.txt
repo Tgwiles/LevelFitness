@@ -1,0 +1,21 @@
+LevelMapping
+    a > wall 
+    b > cliff 
+    c > exit 
+    d > lock 
+    e > ground 
+    f > avatar 
+
+LevelDescription
+aaaaaaaa
+a   b  a
+a b  aaa
+a cd   a
+a      a
+a      a
+a   e  a
+a  d   a
+a     ea
+a   e  a
+a  f   a
+aaaaaaaa

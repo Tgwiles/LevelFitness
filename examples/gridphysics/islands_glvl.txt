@@ -1,0 +1,29 @@
+LevelMapping
+    a > wall 
+    b > bomb 
+    c > landSand 
+    d > whirlpool 
+    e > water 
+    f > goal 
+    g > avatar 
+
+LevelDescription
+aaaaaaaaaaaaaaaaaaa
+a                 a
+a                 a
+a                 a
+a        b     c  a
+ac de   c        ea
+a        f        a
+a  f       f      a
+a                 a
+a   d   e         a
+a                 a
+a                fa
+a       b         a
+a  b           ec a
+a      f          a
+a     g   fb      a
+a     e      aaaa a
+a         d       a
+aaaaaaaaaaaaaaaaaaa

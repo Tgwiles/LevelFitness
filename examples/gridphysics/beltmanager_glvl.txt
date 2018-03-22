@@ -1,0 +1,32 @@
+LevelMapping
+    a > wall 
+    b > jointRight 
+    c > leverDown 
+    d > passenger 
+    e > leverUp 
+    f > avatar 
+    g > floor 
+    h > death 
+    i > leverRight 
+    j > leverLeft 
+    k > suitcase 
+
+LevelDescription
+aaaaaaaaaaaaaaa
+abc           a
+a             a
+a       def   a
+a        e    a
+a gh          a
+a   i      e  a
+a     aaac    a
+aj  i     i   a
+a  haaaa      a
+a           i a
+a             a
+a        h    a
+a k      j   ja
+a           b a
+ah b  ig  g   a
+a  c          a
+aaaaaaaaaaaaaaa

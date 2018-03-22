@@ -1,0 +1,35 @@
+LevelMapping
+    a > wall 
+    b > lineright 
+    c > assembly2 
+    d > lineup 
+    e > avatar 
+    f > vortex 
+    g > goal 
+    h > assembly3 
+    i > portal 
+    j > victory 
+    k > linedown 
+    l > assembly1 
+
+LevelDescription
+aaaaaaaaaaaaaaaaaaaa
+a                  a
+a      b           a
+ac d bb       e    a
+a     f   g        a
+a b      hb        a
+a      b     i     a
+a                  a
+a       jd b       a
+a       j   k     ba
+a    k    aaaaa    a
+a   g          g   a
+a                  a
+a  a l hg    ic    a
+a  a   c           a
+aaaa k             a
+a     d            a
+ab    k       k    a
+a       l    l b   a
+aaaaaaaaaaaaaaaaaaaa

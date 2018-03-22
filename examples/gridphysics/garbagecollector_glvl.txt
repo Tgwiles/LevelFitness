@@ -1,0 +1,11 @@
+LevelMapping
+    a > garbage 
+    b > wall 
+    c > avatar 
+
+LevelDescription
+     
+  a b
+b   c
+    a
+     

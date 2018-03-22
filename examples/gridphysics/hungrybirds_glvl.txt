@@ -1,0 +1,14 @@
+LevelMapping
+    a > wall 
+    b > goal 
+    c > foodbank 
+    d > food 
+    e > avatar 
+
+LevelDescription
+aaaaaa
+ab   a
+a  aca
+aaaa a
+a de a
+aaaaaa

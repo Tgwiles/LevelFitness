@@ -1,0 +1,24 @@
+LevelMapping
+    a > slowPortal 
+    b > fuelPortal 
+    c > fastPortal 
+    d > avatar 
+    e > treePortal 
+
+LevelDescription
+   a b       
+      c      
+    a        
+         d b 
+             
+             
+e            
+             
+ b           
+          e  
+             
+      c    c 
+  c          
+     b       
+             
+        a  a 

@@ -235,6 +235,7 @@ public class LevelGenerator extends AbstractLevelGenerator{
 		bestFitness = new ArrayList<Double>();
 		numOfFeasible = new ArrayList<Integer>();
 		numOfInFeasible = new ArrayList<Integer>();
+		elapsedTimer.setMaxTimeMillis(10000);
 		
 		SharedData.gameDescription = game;
 		

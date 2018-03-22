@@ -1,0 +1,25 @@
+LevelMapping
+    a > wall 
+    b > bossThunder 
+    c > pokemon1 
+    d > avatar 
+
+LevelDescription
+aaaaaaaaaaaaaaaaaa
+a           b    a
+a                a
+a  a            ca
+a aa             a
+a  a             a
+a  a             a
+aaaa             a
+a          aaaa  a
+a                a
+a       a        a
+a       a        a
+aaad   aa a      a
+a  aaaa   a      a
+a  a      a      a
+a  aaa aaa       a
+a        a       a
+aaaaaaaaaaaaaaaaaa
