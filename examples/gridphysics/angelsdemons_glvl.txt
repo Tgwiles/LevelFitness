@@ -1,31 +1,27 @@
 LevelMapping
     a > wall 
-    b > box 
-    c > input 
-    d > angel 
-    e > output 
-    f > avatar 
-    g > demon 
-    h > cursed 
+    b > avatar 
+    c > box 
+    d > input 
+    e > angel 
+    f > cursed 
+    g > output 
+    h > demon 
 
 LevelDescription
-aaaaaaaaaaaaaaaaaaaa
-a      b c      d  a
-a         de   e   a
-a          fc      a
-aaaa               a
-a    g  e   d   d  a
-a b      aaa   c  ca
-a        dc d      a
-a       aaa        a
-a          e d     a
-a             b    a
-a           h  c c a
-ac         aaa  aaaa
-a      h           a
-a             cb   a
-a                e a
-a   g              a
-a           dc c   a
-a      g           a
-aaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaa
+a  b    c      a
+a  d       d   a
+a     c e      a
+a              a
+a       f   aaaa
+a     g        a
+a              a
+a      e       a
+a   d    aaaaa a
+a      d   g  ea
+a         d  h a
+af   d         a
+a h   d      d a
+a  h     d     a
+aaaaaaaaaaaaaaaa

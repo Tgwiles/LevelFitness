@@ -1,0 +1,36 @@
+LevelMapping
+    a > wall 
+    b > randomEnemy2Hdn 
+    c > trap2Hdn 
+    d > onground 
+    e > chip1Hdn 
+    f > sT 
+    g > chip2Hdn 
+    h > chip3Hdn 
+    i > goal 
+    j > hiddenDoor 
+    k > up 
+    l > sS 
+    m > trap1Hdn 
+
+LevelDescription
+aaaaaaaaaaaaaaaaaaaa
+a          b  c    a
+a            d     a
+a                  a
+a                  a
+a  e             f a
+ag                 a
+a    g           h a
+a                  a
+a i       aaa  b   a
+a           a      a
+aj  b              a
+ak             ib  a
+a       l          a
+a                  a
+a           m      a
+a   c     c        a
+a                  a
+a        j         a
+aaaaaaaaaaaaaaaaaaaa

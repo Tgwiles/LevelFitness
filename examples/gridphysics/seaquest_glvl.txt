@@ -1,0 +1,21 @@
+LevelMapping
+    a > normaldiverhole 
+    b > whalehole 
+    c > oftendiverhole 
+    d > sharkhole 
+    e > avatar 
+
+LevelDescription
+           
+    a      
+     b     
+ c         
+      d    
+           
+a          
+           
+           
+           
+e          
+  d     aa 
+      c c  

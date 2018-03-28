@@ -1,14 +1,17 @@
 LevelMapping
     a > wall 
-    b > goal 
-    c > foodbank 
+    b > avatar 
+    c > goal 
     d > food 
-    e > avatar 
+    e > foodbank 
 
 LevelDescription
-aaaaaa
-ab   a
-a  aca
-aaaa a
-a de a
-aaaaaa
+aaaaaaaa
+a      a
+a bc   a
+ad   e a
+ac     a
+ad     a
+a   aaaa
+a      a
+aaaaaaaa

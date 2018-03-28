@@ -1,0 +1,25 @@
+LevelMapping
+    a > wall 
+    b > portalSlow 
+    c > portalFast 
+    d > portalAmmo 
+    e > avatar 
+    f > city 
+
+LevelDescription
+aaaaaaaaaaa
+a   b     a
+a         a
+a         a
+a         a
+a   aaa   a
+ac   d    a
+a  c      a
+a c   b e a
+a  aaa    a
+a  a      a
+a aaa    da
+a  b     fa
+a         a
+ad        a
+aaaaaaaaaaa

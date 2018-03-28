@@ -1,0 +1,25 @@
+LevelMapping
+    a > wall 
+    b > ground 
+    c > box 
+    d > extinguisher 
+    e > fireStart 
+    f > avatar 
+
+LevelDescription
+aaaaaaaaaaaaa
+a           a
+a           a
+a           a
+a   b   aaaaa
+a   b c    ca
+a         aaa
+a          ba
+a   d       a
+a     d     a
+a           a
+a   dc      a
+a  db    aaaa
+ae     c    a
+a       f   a
+aaaaaaaaaaaaa

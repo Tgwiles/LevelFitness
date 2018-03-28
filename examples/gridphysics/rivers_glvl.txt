@@ -1,0 +1,18 @@
+LevelMapping
+    a > rock 
+    b > ground 
+    c > avatar 
+    d > dryHouse 
+
+LevelDescription
+aaaaaaaaaaaaaaaa
+a     b        a
+a   aaaa  b    a
+a b b          a
+a              a
+a              a
+a              a
+ab         a c a
+a  b aaa aaa   a
+a      a a d   a
+aaaaaaaaaaaaaaaa

@@ -1,15 +1,15 @@
 LevelMapping
-    a > exit 
-    b > avatar 
+    a > avatar 
+    b > wall 
     c > hole 
-    d > lemming 
+    d > entrance 
 
 LevelDescription
-        
-        
-  a     
-        
-    a   
-b  c    
-        
-c  a d  
+    a 
+      
+  b b 
+      
+c     
+  c   
+ d    
+      

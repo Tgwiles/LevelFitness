@@ -1,0 +1,16 @@
+LevelMapping
+    a > mud 
+    b > dog 
+    c > sword 
+    d > avatar 
+    e > snow 
+
+LevelDescription
+aaaaaaaaaa
+a    b c a
+a  c a d a
+a    a   a
+a   aa   a
+ae  b    a
+a        a
+aaaaaaaaaa

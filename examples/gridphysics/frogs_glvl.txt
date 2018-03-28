@@ -1,27 +1,27 @@
 LevelMapping
     a > wall 
-    b > slowLtruck 
-    c > fastRtruck 
-    d > slowRtruck 
-    e > goal 
-    f > forestDense 
-    g > forestSparse 
-    h > water 
-    i > avatar 
+    b > forestSparse 
+    c > avatar 
+    d > goal 
+    e > slowRtruck 
+    f > water 
+    g > slowLtruck 
 
 LevelDescription
-aaaaaaaaaaaaaaaaaaa
-a                ba
-a                 a
-a   bc  d    aaaa a
-ae   efc         fa
-a           d     a
-a                 a
-a                 a
-a                 a
-a g               a
-a            h   da
-a                 a
-a e               a
-a    i            a
-aaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaa
+a          a
+a          a
+a          a
+a          a
+a          a
+a  bb      a
+a     c    a
+a    d     a
+a  ef      a
+a  gf      a
+a       e  a
+a   d      a
+a        aaa
+a          a
+a        f a
+aaaaaaaaaaaa

@@ -1,0 +1,44 @@
+LevelMapping
+    a > wall 
+    b > betA 
+    c > arena 
+    d > winC 
+    e > pitC 
+    f > barrier 
+    g > winA 
+    h > pitA 
+    i > camelA 
+    j > pitD 
+    k > betD 
+    l > winD 
+    m > betC 
+    n > goal 
+    o > camelD 
+    p > betB 
+    q > winB 
+    r > camelC 
+    s > camelB 
+    t > normal 
+    u > pitB 
+
+LevelDescription
+aaaaaaaaaaaaaaaaaaa
+a    b   c    d e a
+a   ef            a
+a  g       h      a
+a       g  ij     a
+a   a k   c     fla
+a  aa     m     e a
+a     e  dn     o a
+a       p    q    a
+a                 a
+aiq o       i     a
+a     l      n  q a
+a  n   q fi      ra
+an s  t  e        a
+ab f  k        un a
+a    l    j       a
+ae         saubuaaa
+a           aaaa  a
+ad om             a
+aaaaaaaaaaaaaaaaaaa

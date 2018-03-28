@@ -1,23 +1,21 @@
 LevelMapping
-    a > btm 
-    b > enemyground 
+    a > top 
+    b > powerblib 
     c > wall 
     d > avatar 
-    e > blib 
+    e > btm 
 
 LevelDescription
-          
-   a      
-          
-b         
-        b 
-       cb 
-b  d  e   
-          
-          
-     c    
-          
-          
-          
-          
   a       
+        b 
+   c  a   
+       a  
+    a     
+          
+          
+     d    
+e         
+          
+          
+       c  
+          

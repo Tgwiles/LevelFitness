@@ -1,0 +1,33 @@
+LevelMapping
+    a > wall 
+    b > headinplace 
+    c > base 
+    d > head 
+    e > chest 
+    f > lock 
+    g > avatar 
+    h > body 
+    i > wrongplace 
+    j > key 
+
+LevelDescription
+aaaaaaaaaaaa
+a  b    a  a
+a     c aa a
+ade      a a
+a          a
+a  f f     a
+ab g       a
+a          a
+a e h     ha
+a          a
+a  h    ciha
+a        c a
+a         ca
+a f    d  ja
+a        aaa
+a        d a
+a        fia
+ade        a
+aj         a
+aaaaaaaaaaaa

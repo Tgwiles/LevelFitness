@@ -1,24 +1,22 @@
 LevelMapping
-    a > slowPortal 
-    b > fuelPortal 
-    c > fastPortal 
-    d > avatar 
-    e > treePortal 
+    a > fastPortal 
+    b > treePortal 
+    c > fuelPortal 
+    d > slowPortal 
+    e > avatar 
 
 LevelDescription
-   a b       
-      c      
-    a        
-         d b 
              
+   a         
              
+a      b     
+        c    
+  d          
+  a         b
 e            
              
- b           
-          e  
+         d   
+d   c        
+c            
              
-      c    c 
   c          
-     b       
-             
-        a  a 

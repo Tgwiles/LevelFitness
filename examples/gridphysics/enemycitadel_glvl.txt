@@ -1,0 +1,20 @@
+LevelMapping
+    a > roundhole 
+    b > enemy 
+    c > goal 
+    d > crate 
+    e > boulder 
+    f > avatar 
+
+LevelDescription
+aaaaaaaaaaaaa
+a       b   a
+a     c  d  a
+a          ea
+a           a
+a       aaaaa
+a dd     b  a
+a          ba
+a d      bf a
+a     c     a
+aaaaaaaaaaaaa

@@ -1,0 +1,20 @@
+LevelMapping
+    a > piranhahole 
+    b > whalehole 
+    c > sharkhole 
+    d > avatar 
+
+LevelDescription
+                 
+                 
+               a 
+b        b       
+       b         
+ cb           c  
+  db             
+              a  
+  c   b          
+  b              
+                 
+                c
+             b   

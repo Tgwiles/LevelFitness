@@ -1,0 +1,21 @@
+LevelMapping
+    a > wall 
+    b > iceshoes 
+    c > ice 
+    d > trap 
+    e > chip 
+    f > fireboots 
+    g > exit 
+    h > avatar 
+
+LevelDescription
+aaaaaaaaaaaaa
+ab          a
+a       c   a
+ad       e  a
+a    f      a
+a  d        a
+a g    hf aaa
+a          ea
+a           a
+aaaaaaaaaaaaa
