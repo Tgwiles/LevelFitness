@@ -1,5 +1,7 @@
 package tracks.levelGeneration.patternConstructive;
 
+import com.sun.applet2.AppletParameters;
+import com.sun.deploy.util.StringUtils;
 import com.sun.jmx.remote.internal.ArrayQueue;
 import com.sun.org.apache.xpath.internal.SourceTree;
 import core.game.Game;
@@ -8,18 +10,18 @@ import core.vgdl.VGDLFactory;
 import core.vgdl.VGDLParser;
 import core.vgdl.VGDLRegistry;
 import tools.GameAnalyzer;
+import tools.Utils;
 
 import javax.xml.bind.SchemaOutputResolver;
 import java.io.*;
+import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Scanner;
+import java.util.*;
 
 public class PatternLoader {
 
-    ArrayList<String> games;
+    ArrayList<String> gameS;
 
     String patternFilePath;
     String gamesFolderPath;
@@ -30,18 +32,18 @@ public class PatternLoader {
     ArrayList<String> collectables = new ArrayList<String>();
     ArrayList<String> others = new ArrayList<String>();
 
-    PatternLoader() {
-        games = new ArrayList<String>();
-        games.add("aliens");
-        games.add("brainman");
-        games.add("catapults");
-        games.add("fireman");
-        games.add("frogs");
-        games.add("pacman");
-        games.add("sokoban");
-        games.add("solarfox");
-        games.add("surround");
-        games.add("zelda");
+    PatternLoader(){
+        gameS = new ArrayList<String>();
+        //games.add("aliens");
+        //games.add("brainman");
+        //games.add("catapults");
+        //games.add("fireman");
+        //games.add("frogs");
+        //games.add("pacman");
+        //games.add("sokoban");
+        //games.add("solarfox");
+        //games.add("surround");
+        gameS.add("zelda");
 
         patternFilePath = "src/tracks/levelGeneration/patternConstructive/patternFile.txt";
         gamesFolderPath = "examples/gridphysics/";
@@ -54,72 +56,88 @@ public class PatternLoader {
     }
 
     //Copy original game levels into our constructor's package to operate on
-    public static void copy(String sourcePath, String destinationPath) throws IOException {
+    public static void copy(String sourcePath, String destinationPath) throws IOException{
         Files.copy(Paths.get(sourcePath), new FileOutputStream(destinationPath));
     }
 
     //Helper to find all sprites associated with mapped character
-    private char convertMappingToCode(char lookupChar, HashMap<Character, ArrayList<String>> charMap) {
+    private char convertMappingToCode(char lookupChar, HashMap<Character, ArrayList<String>> charMap){
 
         //System.out.println(lookupChar);
         ArrayList<String> spritesInLocation = new ArrayList<String>();
-        if (lookupChar == '\n') {
+        if (lookupChar == '\n'){
             return lookupChar;
         }
-        if (lookupChar == '\r') {
-            return '\n';
-        } else {
-            for (int j = 0; j < charMap.get(lookupChar).size(); j++) {
+        if (lookupChar == '\r'){ //This is to fix the newline character problems with the pacman levels
+            return ' ';
+        }
+        else{
+            for (int j = 0; j < charMap.get(lookupChar).size(); j++){
                 spritesInLocation.add(charMap.get(lookupChar).get(j));
             }
 
             //Convert the list of sprites into a list of their types
             ArrayList<Character> typesInLocation = new ArrayList<Character>();
-            for (int k = 0; k < spritesInLocation.size(); k++) {
-                if (avatars.contains(spritesInLocation.get(k))) {
+            for (int k = 0; k < spritesInLocation.size(); k++){
+                if (avatars.contains(spritesInLocation.get(k))){
                     typesInLocation.add('A');
-                } else if (solids.contains(spritesInLocation.get(k))) {
+                }
+                else if (solids.contains(spritesInLocation.get(k))){
                     typesInLocation.add('S');
-                } else if (harmfuls.contains(spritesInLocation.get(k))) {
+                }
+                else if (harmfuls.contains(spritesInLocation.get(k))){
                     typesInLocation.add('H');
-                } else if (collectables.contains(spritesInLocation.get(k))) {
+                }
+                else if (collectables.contains(spritesInLocation.get(k))){
                     typesInLocation.add('C');
-                } else if (others.contains(spritesInLocation.get(k))) {
+                }
+                else if (others.contains(spritesInLocation.get(k))){
                     typesInLocation.add('O');
                 }
             }
 
             char answer = 'Z';
             //Convert List of sprite types into a character code THIS WILL HAVE TO BE EXTENDED IF ADDED GAMES HAVE UNKNOWN MAPPING COMBOS
-            if (typesInLocation.contains('O')) {
-                if (typesInLocation.contains('A')) {
-                    if (typesInLocation.contains('H')) {
+            if (typesInLocation.contains('O')){
+                if (typesInLocation.contains('A')){
+                    if (typesInLocation.contains('H')){
                         answer = '6';  //O,A,H
                     } else answer = '2';  //O,A
-                } else if (typesInLocation.contains('H')) {
-                    if (typesInLocation.size() == 2) {
+                }
+                else if(typesInLocation.contains('H')){
+                    if (typesInLocation.size() == 2){
                         answer = '3'; //O,H
                     } else answer = '7';  //O,H,H
-                } else if (typesInLocation.contains('C')) {
+                }
+                else if(typesInLocation.contains('C')){
                     answer = '4'; //O,C
-                } else if (typesInLocation.contains('S')) {
+                }
+                else if(typesInLocation.contains('S')){
                     answer = '5'; //O,S
-                } else if (typesInLocation.size() == 2) {
+                }
+                else if (typesInLocation.size() == 2) {
                     answer = '1'; //O,O
                 } else answer = 'O'; //O
-            } else if (typesInLocation.contains('A')) {
-                if (typesInLocation.contains('S')) {
+            }
+            else if (typesInLocation.contains('A')){
+                if (typesInLocation.contains('S')){
                     answer = '8'; //A,S
                 } else answer = 'A'; //A
-            } else if (typesInLocation.contains('S')) {
-                if (typesInLocation.contains('H')) {
+            }
+            else if (typesInLocation.contains('S')){
+                if (typesInLocation.contains('H')){
                     answer = '9'; //S,H
                 } else answer = 'S'; //S
-            } else if (typesInLocation.contains('H')) {
+            }
+            else if (typesInLocation.contains('H')){
                 answer = 'H'; //H
-            } else if (typesInLocation.contains('C')) {
+            }
+            else if(typesInLocation.contains('C')){
                 answer = 'C'; //C
-            } else answer = 'Z';
+            }
+            else{
+                return '?';
+            }
 
             return answer;
         }
@@ -129,17 +147,43 @@ public class PatternLoader {
     //Function to convert all levels for each designated game into a level with codified types instead of sprites and save them in the folder
     private void convertLevelsToCodes() throws IOException {
 
-        for (int i = 0; i < games.size(); i++) {
+        //Clear the prior patternFile
+        new File("src\\tracks\\levelGeneration\\patternConstructive\\patternFile.txt").delete();
+
+        //Load available games
+        String spGamesCollection =  "examples/all_games_sp.csv";
+        String[][] games = Utils.readGames(spGamesCollection);
+
+        ArrayList<String> allGames = new ArrayList<String>();
+
+        for(int i = 0; i < 102; i++){ //102 is the last game in the gridphysics folder
+            allGames.add(games[i][1]);
+        }
+        allGames.remove("eggomania");
+        allGames.remove("eighthpassenger");
+        allGames.remove("jaws");
+        allGames.remove("realsokoban");
+        allGames.remove("thecitadel");
+        allGames.remove("painter");
+
+
+
+        for(int i = 0; i < allGames.size(); i++){
             VGDLFactory.GetInstance().init(); // This always first thing to do.
             VGDLRegistry.GetInstance().init();
 
-
+            System.out.println("Game Name: " + allGames.get(i));
             //Set up the game file and necessarry tools to use it
-            String gamePath = gamesFolderPath + games.get(i) + ".txt";
+            String gamePath = gamesFolderPath + allGames.get(i) + ".txt";
             Game myGame = new VGDLParser().parseGame(gamePath);
             GameDescription myDescription = new GameDescription(myGame);
             GameAnalyzer gameAnalyzer = new GameAnalyzer(myDescription);
 
+            avatars.clear();
+            solids.clear();
+            harmfuls.clear();
+            collectables.clear();
+            others.clear();
 
             //Find all sprites of each class
             avatars.addAll(gameAnalyzer.getAvatarSprites());
@@ -148,8 +192,10 @@ public class PatternLoader {
             collectables.addAll(gameAnalyzer.getCollectableSprites());
             others.addAll(gameAnalyzer.getOtherSprites());
 
+
             //test
             System.out.println(gamePath);
+            System.out.println("Keyset: " + myGame.getCharMapping().keySet());
             System.out.println("Avatars: " + avatars);
             System.out.println("Solids: " + solids);
             System.out.println("Harmfuls: " + harmfuls);
@@ -157,38 +203,132 @@ public class PatternLoader {
             System.out.println("Others: " + others);
             System.out.println(myGame.getCharMapping());
 
-            for (int j = 0; j < 5; j++) {
-                copy("examples\\gridphysics\\" + games.get(i) + "_lvl" + j + ".txt", "src\\tracks\\levelGeneration\\patternConstructive\\ConvertedLevels\\" + games.get(i) + j);
+            for(int j = 0; j < 5; j ++){
+                System.out.println("Level Number: " + j);
+                copy("examples\\gridphysics\\" + allGames.get(i) + "_lvl" + j + ".txt", "src\\tracks\\levelGeneration\\patternConstructive\\ConvertedLevels\\" + allGames.get(i) + j);
 
-                String levelString = new Scanner(new File("src\\tracks\\levelGeneration\\patternConstructive\\ConvertedLevels\\" + games.get(i) + j)).useDelimiter("\\Z").next();
+                String levelString = new Scanner(new File("src\\tracks\\levelGeneration\\patternConstructive\\ConvertedLevels\\" + allGames.get(i) + j)).useDelimiter("\\Z").next();
                 char[] levelChars = levelString.toCharArray();
                 ArrayList<Character> levelCodes = new ArrayList<Character>();
-                for (int k = 0; k < levelString.length(); k++) {
+                for (int k = 0; k < levelString.length(); k++){
                     levelCodes.add(convertMappingToCode(levelChars[k], myGame.getCharMapping()));
+                    if (convertMappingToCode(levelChars[k], myGame.getCharMapping()) == '?') System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"); //warning for unidentified mapping type
                 }
                 String codedLevel = levelCodes.toString().replace(",", "").replace(" ", "").replace("[", "").replace("]", "");
-                System.out.println("--------------Before-----------");
-                System.out.println(levelString);
-                System.out.println("--------------After-----------");
-                System.out.println(codedLevel);
+                //System.out.println("--------------Before-----------");
+                //System.out.println(levelString);
+                //System.out.println("--------------After-----------");
+                //System.out.println(codedLevel);
 
-                PrintWriter out = new PrintWriter("src\\tracks\\levelGeneration\\patternConstructive\\ConvertedLevels\\" + games.get(i) + j);
+                PrintWriter out = new PrintWriter("src\\tracks\\levelGeneration\\patternConstructive\\ConvertedLevels\\" + allGames.get(i) + j);
                 out.print(codedLevel);
                 out.close();
+
+                generate3by3Patterns(codedLevel);
             }
         }
     }
 
-    //Function to generate all 3x3 patterns contained in
+    //Function to generate all 3x3 patterns contained in a single level
+    private void generate3by3Patterns(String level) throws IOException {
+        int width = level.indexOf("\n");
+        int height = level.split("\n", -1).length;
+        PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("src\\tracks\\levelGeneration\\patternConstructive\\patternFile.txt", true)));
 
+        //build it into a double array
+        ArrayList<String> levelArray = new ArrayList<String>();
+        for (int i = 0; i < height; i++){
+            levelArray.add(level.split("\n")[i]);
+        }
+
+        //Print pattern to file
+        for (int i = 0; i < height-2; i++){
+            for(int j = 0; j < width-2; j++){
+
+                out.print(levelArray.get(i).charAt(j));
+                out.print(levelArray.get(i).charAt(j+1));
+                out.print(levelArray.get(i).charAt(j+2));
+
+                out.print(levelArray.get(i+1).charAt(j));
+                out.print(levelArray.get(i+1).charAt(j+1));
+                out.print(levelArray.get(i+1).charAt(j+2));
+
+                out.print(levelArray.get(i+2).charAt(j));
+                out.print(levelArray.get(i+2).charAt(j+1));
+                out.print(levelArray.get(i+2).charAt(j+2));
+            }
+        }
+        out.close();
+    }
+
+    private void printPatternStatistics() throws FileNotFoundException {
+        String patternString = new Scanner(new File("src\\tracks\\levelGeneration\\patternConstructive\\patternFile.txt")).useDelimiter("\\Z").next();
+
+        HashMap<Character, Integer> codeCounts = new HashMap<Character, Integer>();
+        codeCounts.put('A',0);
+        codeCounts.put('S',0);
+        codeCounts.put('H',0);
+        codeCounts.put('C',0);
+        codeCounts.put('O',0);
+        codeCounts.put('1',0);
+        codeCounts.put('2',0);
+        codeCounts.put('3',0);
+        codeCounts.put('4',0);
+        codeCounts.put('5',0);
+        codeCounts.put('6',0);
+        codeCounts.put('7',0);
+        codeCounts.put('8',0);
+        codeCounts.put('9',0);
+
+
+        for (int i = 0; i < patternString.length(); i++){
+            codeCounts.replace(patternString.charAt(i), codeCounts.get(patternString.charAt(i)) + 1);
+        }
+
+        HashMap<String, Integer> patternCounts = new HashMap<String, Integer>();
+        for (int i = 0; i < patternString.length(); i+=9){
+
+            if (patternCounts.containsKey(patternString.substring(i, i+9))){
+                patternCounts.replace(patternString.substring(i, i+9), patternCounts.get(patternString.substring(i, i+9)) +1);
+            }else patternCounts.put(patternString.substring(i, i+9), 1);
+
+        }
+
+        System.out.println("Number of patterns: " + patternString.length()/9);
+        System.out.println("Codes: " + codeCounts.keySet());
+        System.out.println("Counts: " + codeCounts.values());
+
+        ArrayList<Integer> allPatternCounts = new ArrayList<Integer>();
+        allPatternCounts.addAll(patternCounts.values());
+
+        Collections.sort(allPatternCounts);
+        Collections.reverse(allPatternCounts);
+        //System.out.println("Count per pattern: " + allPatternCounts);
+
+        HashMap<Integer, Integer> countFrequency = new HashMap<Integer, Integer>();
+        for (int i = 0; i < allPatternCounts.size(); i ++){
+            if(countFrequency.containsKey(allPatternCounts.get(i))){
+                countFrequency.replace(allPatternCounts.get(i), countFrequency.get(allPatternCounts.get(i)) + 1);
+            }else countFrequency.put(allPatternCounts.get(i), 1);
+        }
+
+        System.out.println("Pattern frequency : number of patterns with that frequency");
+        ArrayList<Integer> uniqueCounts = new ArrayList<Integer>();
+        uniqueCounts.addAll(countFrequency.keySet());
+        Collections.sort(uniqueCounts);
+        Collections.reverse(uniqueCounts);
+        for (int i = 0; i < uniqueCounts.size(); i++){
+            System.out.println(uniqueCounts.get(i) + ":" + countFrequency.get(uniqueCounts.get(i)));
+        }
+
+    }
 
     public static void main(String[] args) throws IOException {
 
         PatternLoader myLoader = new PatternLoader();
-        myLoader.convertLevelsToCodes();
-
+        //myLoader.convertLevelsToCodes();
+        myLoader.printPatternStatistics();
 
     }
-
 
 }

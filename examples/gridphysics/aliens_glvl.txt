@@ -1,15 +1,21 @@
 LevelMapping
-    a > base 
-    b > avatar 
-    c > portalSlow 
-    d > portalFast 
+    0 > background base 
+    A > background avatar 
+    1 > background portalSlow 
+    2 > background portalFast 
+    w > wall 
+    . > background 
 
 LevelDescription
- a        b   
-       a      
-        a    c
-     a  d  a  
-             c
-              
-              
-  a           
+ww..w.ww.
+ww..w....
+.0w....ww
+w..ww0.w.
+wwww.ww..
+www00..ww
+.w.w..www
+...www000
+ww..w..w0
+w.w.ww.w.
+.ww..wwww
+..www....

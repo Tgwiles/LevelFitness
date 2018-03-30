@@ -5,12 +5,13 @@ import java.util.Random;
 public class TestLevelGeneration {
 
 
-    public static void main(String[] args) {
+	public static  void main(String[] args) {
 
 		// Available Level Generators
 		String randomLevelGenerator = "tracks.levelGeneration.randomLevelGenerator.LevelGenerator";
 		String geneticGenerator = "tracks.levelGeneration.geneticLevelGenerator.LevelGenerator";
 		String constructiveLevelGenerator = "tracks.levelGeneration.constructiveLevelGenerator.LevelGenerator";
+		String patternLevelGenerator = "tracks.levelGeneration.patternConstructive.LevelGenerator";
 
 		String gamesPath = "examples/gridphysics/";
 		String physicsGamesPath = "examples/contphysics/";
@@ -39,20 +40,20 @@ public class TestLevelGeneration {
 
 
 		String recordActionsFile = null;// "actions_" + games[gameIdx] + "_lvl"
-										// + levelIdx + "_" + seed + ".txt";
-										// where to record the actions
-										// executed. null if not to save.
+		// + levelIdx + "_" + seed + ".txt";
+		// where to record the actions
+		// executed. null if not to save.
 
 		// Other settings
 		int seed = new Random().nextInt();
-		int gameIdx = 78;
+		int gameIdx = 0;
 		String recordLevelFile = generateLevelPath + games[gameIdx] + "_glvl.txt";
 		String game = generateLevelPath + games[gameIdx] + ".txt";
 
 
 		// 1. This starts a game, in a generated level created by a specific level generator
-		if(LevelGenMachine.generateOneLevel(game, constructiveLevelGenerator, recordLevelFile)){
-		    LevelGenMachine.playOneGeneratedLevel(game, recordActionsFile, recordLevelFile, seed);
+		if(LevelGenMachine.generateOneLevel(game, patternLevelGenerator, recordLevelFile)){
+			LevelGenMachine.playOneGeneratedLevel(game, recordActionsFile, recordLevelFile, seed);
 		}
 
 
@@ -71,5 +72,5 @@ public class TestLevelGeneration {
 		//}
 
 
-    }
+	}
 }
