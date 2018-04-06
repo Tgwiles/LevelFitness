@@ -1,0 +1,21 @@
+LevelMapping
+    A > background avatar 
+    b > background butterfly 
+    c > background crab 
+    e > background exitdoor 
+    w > wall 
+    x > background diamond 
+    - > background 
+    . > background dirt 
+    o > background boulder 
+
+LevelDescription
+xxxxxxwwwwww
+xxxxxx---www
+xxxxxx-x-www
+w----x---.xx
+w--A-----exx
+w--x--wwwxxx
+xxx---xxxxxx
+xxx---xxxxxx
+xxxwwwxxxxxx

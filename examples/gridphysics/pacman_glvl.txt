@@ -1,33 +1,22 @@
 LevelMapping
-    a > wall 
-    b > pellet 
-    c > fruit 
-    d > redspawn 
-    e > orangespawn 
-    f > hungry 
-    g > redSc 
-    h > power 
-    i > bluespawn 
-    j > pinkspawn 
+    0 > floor power 
+    A > floor hungry 
+    1 > floor redspawn 
+    2 > floor orangespawn 
+    3 > floor bluespawn 
+    4 > floor pinkspawn 
+    f > floor fruit 
+    w > floor wall 
+    + > floor 
+    . > floor pellet 
 
 LevelDescription
-aaaaaaaaaaaaaaaaaaaa
-a       b      a   a
-a       bc     aa  a
-ab     c  b   d aa a
-abe  aaaaa         a
-a              b   a
-a  f               a
-a                  a
-a      g         d a
-a     h            a
-a         e c      a
-a  h b             a
-ac   b   c      c  a
-a  e         i     a
-a                  a
-a    h        c    a
-a      aaaaa       a
-a       h    e j   a
-a                  a
-aaaaaaaaaaaaaaaaaaaa
+wwwwwwwwwwww
+www221+++www
+www+++w+wwww
+www++Awwwwww
+www+.++++www
+www.++++wwww
+wwwwww+++www
+wwwwwwwwwwww
+wwwwwwwwwwww

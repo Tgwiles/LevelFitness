@@ -1,40 +1,35 @@
 LevelMapping
-    a > wall 
-    b > reddoor 
-    c > fire 
-    d > flippers 
-    e > greenkey 
-    f > gate 
-    g > bluedoor 
-    h > avatar 
-    i > yellowdoor 
-    j > chip 
-    k > yellowkey 
-    l > fireboots 
-    m > bluekey 
-    n > water 
-    o > crate 
-    p > exit 
-    q > greendoor 
+    A > avatar floor 
+    b > bluekey floor 
+    c > chip floor 
+    d > crate floor 
+    e > exit floor 
+    f > flippers floor 
+    g > greenkey floor 
+    i > fireboots floor 
+    m > mud floor 
+    - > gate floor 
+    . > floor 
+    1 > reddoor floor 
+    r > redkey floor 
+    2 > greendoor floor 
+    3 > bluedoor floor 
+    4 > yellowdoor floor 
+    w > wall 
+    x > fire floor 
+    y > yellowkey floor 
+    ~ > water floor 
 
 LevelDescription
-aaaaaaaaaaaaaaaaaaa
-a       b    c    a
-a              aaaa
-a            aaa  a
-a     d        a  a
-a  e  b f        fa
-a     gh        i a
-a   j         k k a
-a   c   g        ia
-a f      f d     la
-a   b             a
-a               m a
-a          i c    a
-a n     d k       a
-a                 a
-an     o d      d a
-a     p l         a
-a       o       oqa
-a      j  m       a
-aaaaaaaaaaaaaaaaaaa
+wwwwwwwww
+www...www
+wwwwwwwww
+wwwg....w
+w2~c....w
+wwwA....w
+w.......w
+w..cib..w
+w..xxx.2w
+w.wwwwwww
+w4wwww..f
+wwwwwwwww

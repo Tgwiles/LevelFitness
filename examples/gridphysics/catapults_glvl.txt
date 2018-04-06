@@ -1,32 +1,24 @@
 LevelMapping
-    a > wall 
-    b > goal 
-    c > water 
-    d > southfacing 
-    e > eastfacing 
-    f > northfacing 
-    g > westfacing 
-    h > moving 
-    i > west 
+    0 > eastfacing floor 
+    A > moving floor 
+    1 > southfacing floor 
+    2 > northfacing floor 
+    3 > westfacing floor 
+    w > wall floor 
+    g > goal floor 
+    . > water floor 
+    _ > floor 
 
 LevelDescription
-aaaaaaaaaaaaaaaaaaa
-a               b a
-a     c           a
-a  b  d    e  f   a
-a g             aaa
-ah  b          f  a
-a                ga
-a    b  c         a
-a       bee     g a
-a         d g     a
-a d g             a
-af          ib    a
-a   a    b d   db a
-a   ad            a
-a  ga       b     a
-a     e           a
-a b     g     c   a
-a                 a
-a   g     b    fe a
-aaaaaaaaaaaaaaaaaaa
+wwwwwwwww
+www_wg__w
+www_____w
+w__wwwwww
+w__A__www
+w_____www
+w___w___w
+www_____w
+w_______w
+www...www
+www___www
+wwwwwwwww

@@ -1,0 +1,22 @@
+LevelMapping
+    0 > floor jail 
+    A > floor avatar 
+    1 > floor depot 
+    r > floor redthug 
+    b > floor boss 
+    d > floor jaildoor 
+    w > wall 
+    g > floor greenthug 
+    y > floor yellowthug 
+    . > floor 
+
+LevelDescription
+yg0wwwwww
+0gg01ywww
+yryyr0www
+0.1.....w
+0.g.A.wyw
+r.r.....w
+0r1www000
+g01www11g
+g1ywwwrry

@@ -1,18 +1,20 @@
 LevelMapping
-    a > wall 
-    b > quiet 
-    c > avatar 
-    d > george 
+    A > floor avatar 
+    c > floor quiet 
+    w > wall 
+    g > floor george 
+    . > floor 
 
 LevelDescription
-aaaaaaa
-a b   a
-a aaaaa
-a     a
-ac    a
-a     a
-a     a
-a     a
-a     a
-a   d a
-aaaaaaa
+wwwwwwwwwwww
+wwwwwwA.cwww
+wwwwwwc..www
+w..wc..ccwww
+w..cwccccwww
+w..wccwwwwww
+www.c.wwwc.w
+wwwccccc.c.w
+www..ccc.c.w
+wwwwwww..cww
+wwwwww.c.cww
+wwwwwwwwwwww

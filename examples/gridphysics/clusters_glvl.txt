@@ -1,0 +1,25 @@
+LevelMapping
+    A > avatar floor 
+    1 > bluebox floor 
+    a > blueblock floor 
+    2 > redbox floor 
+    b > redblock floor 
+    3 > greenbox floor 
+    c > greenblock floor 
+    w > wall 
+    h > hole floor 
+    . > floor 
+
+LevelDescription
+babwwwbbcwww
+ccc1222.1.2w
+baa2.132c.1w
+w21.......3c
+w13bab...2.a
+w..bcb.....b
+ww.b32..1cab
+w13321.23aaa
+w.3.1A2..bcb
+wwwwww1.2www
+wwwwwwwwwwww
+wwwwwwwwwwww

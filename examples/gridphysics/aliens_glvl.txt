@@ -7,15 +7,12 @@ LevelMapping
     . > background 
 
 LevelDescription
-ww..w.ww.
-ww..w....
-.0w....ww
-w..ww0.w.
-wwww.ww..
-www00..ww
-.w.w..www
-...www000
-ww..w..w0
-w.w.ww.w.
-.ww..wwww
-..www....
+000w..w..
+000020...
+000000ww.
+www0000ww
+..w0000..
+.ww0000w.
+...www..w
+.ww.w.www
+..w0w0w.w

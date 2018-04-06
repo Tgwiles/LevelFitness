@@ -1,20 +1,25 @@
 LevelMapping
-    a > cannon 
-    b > spawnHorzL 
-    c > avatar 
-    d > spawnHorzR 
-    e > spawnRandom 
-    f > spawnHorzU 
+    A > avatar 
+    a > avatar cannon floor 
+    r > spawnRandom cannon floor 
+    c > spawnChase cannon floor 
+    f > spawnHorzD cannon floor 
+    v > spawnHorzU cannon floor 
+    w > wall 
+    x > spawnHorzL cannon floor 
+    z > spawnHorzR cannon floor 
+    . > cannon floor 
 
 LevelDescription
-            a 
-        bc    
-              
-d    a        
-          e   
-a             
-    f         
-              
-       e      
-              
-     b        
+wwvww.www...
+.AAww.www.ww
+wwAww.AAA...
+wwwczAwwwAwA
+wwwcrfwwwwwA
+w.wAAAwwwrxA
+wwAAAAwww...
+wwAwaAAAAwww
+.AA.wAA.wwww
+www...AAA.ww
+wwwwwwAwwwww
+wwwwwwAwwwww

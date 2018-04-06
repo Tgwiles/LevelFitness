@@ -1,0 +1,20 @@
+LevelMapping
+    0 > hole floor 
+    A > avatar floor 
+    b > box floor 
+    c > normalBoulder floor 
+    w > wall 
+    g > goal floor 
+    m > masterBoulder floor 
+    . > floor 
+
+LevelDescription
+bggwwwwww
+ggbmbcwww
+gbgwwwwww
+w.cbAgmcw
+w.cgbg.mw
+wccbbgccw
+wwcbb.www
+wwwcccwww
+wwwgbbwww

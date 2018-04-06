@@ -1,0 +1,19 @@
+LevelMapping
+    0 > scared floor 
+    A > floor avatar 
+    w > floor wall 
+    . > floor 
+
+LevelDescription
+wwwwwwwww
+www00..ww
+w0..0000w
+w0w...www
+w.w0.0www
+w0.0A0www
+w.0.00.ww
+w....0.ww
+w....0.ww
+wwwwwwwww
+www.00www
+wwwwwwwww

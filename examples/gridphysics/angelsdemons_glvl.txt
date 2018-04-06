@@ -1,27 +1,24 @@
 LevelMapping
-    a > wall 
-    b > avatar 
-    c > box 
-    d > input 
-    e > angel 
-    f > cursed 
-    g > output 
-    h > demon 
+    A > sky avatar 
+    a > sky angel 
+    d > sky demon 
+    t > sky trunk 
+    w > wall 
+    x > sky box 
+    i > sky input 
+    . > sky 
+    o > sky output 
 
 LevelDescription
-aaaaaaaaaaaaaaaa
-a  b    c      a
-a  d       d   a
-a     c e      a
-a              a
-a       f   aaaa
-a     g        a
-a              a
-a      e       a
-a   d    aaaaa a
-a      d   g  ea
-a         d  h a
-af   d         a
-a h   d      d a
-a  h     d     a
-aaaaaaaaaaaaaaaa
+.w...d.ta...
+.w....Ati...
+......oao...
+oixwww...iix
+tta......xdo
+iat..i......
+.....dwww.x.
+www.a.www...
+.w.wwwwwwww.
+aoowwww.....
+oto.........
+www.........

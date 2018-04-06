@@ -1,9 +1,5 @@
 package tracks.levelGeneration.patternConstructive;
 
-import com.sun.applet2.AppletParameters;
-import com.sun.deploy.util.StringUtils;
-import com.sun.jmx.remote.internal.ArrayQueue;
-import com.sun.org.apache.xpath.internal.SourceTree;
 import core.game.Game;
 import core.game.GameDescription;
 import core.vgdl.VGDLFactory;
@@ -11,41 +7,39 @@ import core.vgdl.VGDLParser;
 import core.vgdl.VGDLRegistry;
 import tools.GameAnalyzer;
 import tools.Utils;
-
-import javax.xml.bind.SchemaOutputResolver;
 import java.io.*;
-import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 
 public class PatternLoader {
 
-    ArrayList<String> gameS;
+    private String gamesFolderPath;
 
-    String patternFilePath;
-    String gamesFolderPath;
+    private ArrayList<String> avatars;
+    private ArrayList<String> solids;
+    private ArrayList<String> harmfuls;
+    private ArrayList<String> collectables;
+    private ArrayList<String> others;
 
-    ArrayList<String> avatars = new ArrayList<String>();
-    ArrayList<String> solids = new ArrayList<String>();
-    ArrayList<String> harmfuls = new ArrayList<String>();
-    ArrayList<String> collectables = new ArrayList<String>();
-    ArrayList<String> others = new ArrayList<String>();
+    private ArrayList<Integer> avatarPatterns;
+    private ArrayList<Integer> bottomAvatarPatterns;
+    private ArrayList<Integer> openBottomPatterns;
+    private ArrayList<Integer> topWallPatterns;
+    private ArrayList<Integer> bottomWallPatterns;
+    private ArrayList<Integer> leftWallPatterns;
+    private ArrayList<Integer> rightWallPatterns;
+    private ArrayList<Integer> tlPatterns;
+    private ArrayList<Integer> trPatterns;
+    private ArrayList<Integer> blPatterns;
+    private ArrayList<Integer> brPatterns;
+
+    private GameDescription gameDescription;
+    private GameAnalyzer gameAnalyzer;
+
+    private int patternCount;
 
     PatternLoader(){
-        gameS = new ArrayList<String>();
-        //games.add("aliens");
-        //games.add("brainman");
-        //games.add("catapults");
-        //games.add("fireman");
-        //games.add("frogs");
-        //games.add("pacman");
-        //games.add("sokoban");
-        //games.add("solarfox");
-        //games.add("surround");
-        gameS.add("zelda");
-
-        patternFilePath = "src/tracks/levelGeneration/patternConstructive/patternFile.txt";
         gamesFolderPath = "examples/gridphysics/";
 
         avatars = new ArrayList<String>();
@@ -53,6 +47,20 @@ public class PatternLoader {
         harmfuls = new ArrayList<String>();
         collectables = new ArrayList<String>();
         others = new ArrayList<String>();
+
+        avatarPatterns = new ArrayList<Integer>();
+        bottomAvatarPatterns = new ArrayList<Integer>();
+        openBottomPatterns = new ArrayList<Integer>();
+        topWallPatterns = new ArrayList<Integer>();
+        bottomWallPatterns = new ArrayList<Integer>();
+        leftWallPatterns = new ArrayList<Integer>();
+        rightWallPatterns = new ArrayList<Integer>();
+        tlPatterns = new ArrayList<Integer>();
+        trPatterns = new ArrayList<Integer>();
+        blPatterns = new ArrayList<Integer>();
+        brPatterns = new ArrayList<Integer>();
+
+        patternCount = 0;
     }
 
     //Copy original game levels into our constructor's package to operate on
@@ -148,7 +156,7 @@ public class PatternLoader {
     private void convertLevelsToCodes() throws IOException {
 
         //Clear the prior patternFile
-        new File("src\\tracks\\levelGeneration\\patternConstructive\\patternFile.txt").delete();
+        new File("src\\tracks\\levelGeneration\\patternConstructive\\PatternData\\patternFile.txt").delete();
 
         //Load available games
         String spGamesCollection =  "examples/all_games_sp.csv";
@@ -176,8 +184,8 @@ public class PatternLoader {
             //Set up the game file and necessarry tools to use it
             String gamePath = gamesFolderPath + allGames.get(i) + ".txt";
             Game myGame = new VGDLParser().parseGame(gamePath);
-            GameDescription myDescription = new GameDescription(myGame);
-            GameAnalyzer gameAnalyzer = new GameAnalyzer(myDescription);
+            gameDescription = new GameDescription(myGame);
+            gameAnalyzer = new GameAnalyzer(gameDescription);
 
             avatars.clear();
             solids.clear();
@@ -229,11 +237,82 @@ public class PatternLoader {
         }
     }
 
+    private void classifyPattern(ArrayList<Character> pattern){
+        //if contains avatar
+        for(int i = 0; i < 9; i++){
+            if(codeHasAvatar(pattern.get(i))){
+                avatarPatterns.add(patternCount);
+            }
+        }
+        //if bottom avatar
+        if(codeHasAvatar(pattern.get(6)) || (!codeHasSolid(pattern.get(6)) && !codeHasHarmful(pattern.get(6)))){
+            if(codeHasAvatar(pattern.get(7)) || (!codeHasSolid(pattern.get(7)) && !codeHasHarmful(pattern.get(7)))){
+                if(codeHasAvatar(pattern.get(8)) || (!codeHasSolid(pattern.get(8)) && !codeHasHarmful(pattern.get(8)))){
+                    if(codeHasAvatar(pattern.get(6)) || codeHasAvatar(pattern.get(7)) || codeHasAvatar(pattern.get(8))){
+                        bottomAvatarPatterns.add(patternCount);
+                    }
+                }
+            }
+        }
+        //if open bottom
+        if(!codeHasSolid(pattern.get(6)) && !codeHasHarmful(pattern.get(6))){
+            if(!codeHasSolid(pattern.get(7)) && !codeHasHarmful(pattern.get(7))){
+                if(!codeHasSolid(pattern.get(8)) && !codeHasHarmful(pattern.get(8))){
+                    if(!avatarPatterns.contains(patternCount)){
+                        openBottomPatterns.add(patternCount);
+                    }
+                }
+            }
+        }
+        //if t wall
+        if(codeHasSolid(pattern.get(0)) && codeHasSolid(pattern.get(1)) && codeHasSolid(pattern.get(2))){
+            topWallPatterns.add(patternCount);
+        }
+        //if b wall
+        if(codeHasSolid(pattern.get(6)) && codeHasSolid(pattern.get(7)) && codeHasSolid(pattern.get(8))){
+            bottomWallPatterns.add(patternCount);
+        }
+        //if l wall
+        if(codeHasSolid(pattern.get(0)) && codeHasSolid(pattern.get(3)) && codeHasSolid(pattern.get(6))){
+            leftWallPatterns.add(patternCount);
+        }
+        //if r wall
+        if(codeHasSolid(pattern.get(2)) && codeHasSolid(pattern.get(5)) && codeHasSolid(pattern.get(8))){
+            rightWallPatterns.add(patternCount);
+        }
+        //if tl corner
+        if(codeHasSolid(pattern.get(0)) && codeHasSolid(pattern.get(1)) && codeHasSolid(pattern.get(2)) && codeHasSolid(pattern.get(3)) && codeHasSolid(pattern.get(6))){
+            tlPatterns.add(patternCount);
+        }
+        //if tr corner
+        if(codeHasSolid(pattern.get(0)) && codeHasSolid(pattern.get(1)) && codeHasSolid(pattern.get(2)) && codeHasSolid(pattern.get(5)) && codeHasSolid(pattern.get(8))){
+            trPatterns.add(patternCount);
+        }
+        //if bl corner
+        if(codeHasSolid(pattern.get(0)) && codeHasSolid(pattern.get(3)) && codeHasSolid(pattern.get(6)) && codeHasSolid(pattern.get(7)) && codeHasSolid(pattern.get(8))){
+            blPatterns.add(patternCount);
+        }
+        //if br corner
+        if(codeHasSolid(pattern.get(2)) && codeHasSolid(pattern.get(5)) && codeHasSolid(pattern.get(6)) && codeHasSolid(pattern.get(7)) && codeHasSolid(pattern.get(8))){
+            brPatterns.add(patternCount);
+        }
+    }
+
+    private boolean codeHasAvatar(char code){
+        return code == 'A' || code == '2' || code == '6' || code == '8';
+    }
+    private boolean codeHasSolid(char code){
+        return code == 'S' || code == '5' || code == '8';
+    }
+    private boolean codeHasHarmful(char code){
+        return code == 'H' || code == '3' || code == '6' || code == '7' || code == '9';
+    }
+
     //Function to generate all 3x3 patterns contained in a single level
     private void generate3by3Patterns(String level) throws IOException {
         int width = level.indexOf("\n");
         int height = level.split("\n", -1).length;
-        PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("src\\tracks\\levelGeneration\\patternConstructive\\patternFile.txt", true)));
+        PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("src\\tracks\\levelGeneration\\patternConstructive\\PatternData\\patternFile.txt", true)));
 
         //build it into a double array
         ArrayList<String> levelArray = new ArrayList<String>();
@@ -244,6 +323,20 @@ public class PatternLoader {
         //Print pattern to file
         for (int i = 0; i < height-2; i++){
             for(int j = 0; j < width-2; j++){
+
+                ArrayList<Character> pattern = new ArrayList<Character>();
+                pattern.add(levelArray.get(i).charAt(j));
+                pattern.add(levelArray.get(i).charAt(j+1));
+                pattern.add(levelArray.get(i).charAt(j+2));
+                pattern.add(levelArray.get(i+1).charAt(j));
+                pattern.add(levelArray.get(i+1).charAt(j+1));
+                pattern.add(levelArray.get(i+1).charAt(j+2));
+                pattern.add(levelArray.get(i+2).charAt(j));
+                pattern.add(levelArray.get(i+2).charAt(j+1));
+                pattern.add(levelArray.get(i+2).charAt(j+2));
+
+                classifyPattern(pattern);
+                patternCount++;
 
                 out.print(levelArray.get(i).charAt(j));
                 out.print(levelArray.get(i).charAt(j+1));
@@ -261,8 +354,46 @@ public class PatternLoader {
         out.close();
     }
 
+
+    private void removeAllSingleOccurrences() throws FileNotFoundException {
+
+        String patternString = new Scanner(new File("src\\tracks\\levelGeneration\\patternConstructive\\PatternData\\patternFile.txt")).useDelimiter("\\Z").next();
+        new File("src\\tracks\\levelGeneration\\patternConstructive\\PatternData\\patternFile.txt").delete();
+        PrintWriter writer = new PrintWriter("src\\tracks\\levelGeneration\\patternConstructive\\PatternData\\patternFile.txt");
+
+        HashMap<String, Integer> patternCounts = new HashMap<String, Integer>();
+        for (int i = 0; i < patternString.length(); i+=9){
+
+            if (patternCounts.containsKey(patternString.substring(i, i+9))){
+                patternCounts.replace(patternString.substring(i, i+9), patternCounts.get(patternString.substring(i, i+9)) +1);
+            }else patternCounts.put(patternString.substring(i, i+9), 1);
+
+        }
+
+        ArrayList<String> keySetVals = new ArrayList<String>();
+        keySetVals.addAll(patternCounts.keySet());
+        ArrayList<String> singleAppearance = new ArrayList<String>();
+
+        for(int j = 0; j < patternCounts.keySet().size(); j ++){
+            if(patternCounts.get(keySetVals.get(j)) == 1 ){
+                singleAppearance.add(keySetVals.get(j));
+            }
+        }
+
+        for (int i = 0; i < patternString.length(); i+=9) {
+            if(singleAppearance.contains(patternString.substring(i, i + 9))){
+                patternString = patternString.substring(0, i).concat(patternString.substring(i + 9));
+                i -= 9;
+            }
+        }
+
+        writer.print(patternString);
+        writer.close();
+
+    }
+
     private void printPatternStatistics() throws FileNotFoundException {
-        String patternString = new Scanner(new File("src\\tracks\\levelGeneration\\patternConstructive\\patternFile.txt")).useDelimiter("\\Z").next();
+        String patternString = new Scanner(new File("src\\tracks\\levelGeneration\\patternConstructive\\PatternData\\patternFile.txt")).useDelimiter("\\Z").next();
 
         HashMap<Character, Integer> codeCounts = new HashMap<Character, Integer>();
         codeCounts.put('A',0);
@@ -285,6 +416,11 @@ public class PatternLoader {
             codeCounts.replace(patternString.charAt(i), codeCounts.get(patternString.charAt(i)) + 1);
         }
 
+
+//        System.out.println("Number of patterns: " + patternString.length()/9);
+//        System.out.println("Codes: " + codeCounts.keySet());
+//        System.out.println("Counts: " + codeCounts.values());
+
         HashMap<String, Integer> patternCounts = new HashMap<String, Integer>();
         for (int i = 0; i < patternString.length(); i+=9){
 
@@ -293,10 +429,6 @@ public class PatternLoader {
             }else patternCounts.put(patternString.substring(i, i+9), 1);
 
         }
-
-        System.out.println("Number of patterns: " + patternString.length()/9);
-        System.out.println("Codes: " + codeCounts.keySet());
-        System.out.println("Counts: " + codeCounts.values());
 
         ArrayList<Integer> allPatternCounts = new ArrayList<Integer>();
         allPatternCounts.addAll(patternCounts.values());
@@ -312,7 +444,7 @@ public class PatternLoader {
             }else countFrequency.put(allPatternCounts.get(i), 1);
         }
 
-        System.out.println("Pattern frequency : number of patterns with that frequency");
+        System.out.println("Frequency : number of strings with that frequency");
         ArrayList<Integer> uniqueCounts = new ArrayList<Integer>();
         uniqueCounts.addAll(countFrequency.keySet());
         Collections.sort(uniqueCounts);
@@ -321,14 +453,99 @@ public class PatternLoader {
             System.out.println(uniqueCounts.get(i) + ":" + countFrequency.get(uniqueCounts.get(i)));
         }
 
+
+
+    }
+
+    private void writePatternsIndexesToFile() throws IOException {
+
+        new File("src\\tracks\\levelGeneration\\patternConstructive\\PatternData\\avatarPatterns.txt").delete();
+        new File("src\\tracks\\levelGeneration\\patternConstructive\\PatternData\\bottomAvatarPatterns.txt").delete();
+        new File("src\\tracks\\levelGeneration\\patternConstructive\\PatternData\\openBottomPatterns.txt").delete();
+        new File("src\\tracks\\levelGeneration\\patternConstructive\\PatternData\\topWallPatterns.txt").delete();
+        new File("src\\tracks\\levelGeneration\\patternConstructive\\PatternData\\bottomWallPatterns.txt").delete();
+        new File("src\\tracks\\levelGeneration\\patternConstructive\\PatternData\\leftWallPatterns.txt").delete();
+        new File("src\\tracks\\levelGeneration\\patternConstructive\\PatternData\\rightWallPatterns.txt").delete();
+        new File("src\\tracks\\levelGeneration\\patternConstructive\\PatternData\\tlPatterns.txt").delete();
+        new File("src\\tracks\\levelGeneration\\patternConstructive\\PatternData\\trPatterns.txt").delete();
+        new File("src\\tracks\\levelGeneration\\patternConstructive\\PatternData\\blPatterns.txt").delete();
+        new File("src\\tracks\\levelGeneration\\patternConstructive\\PatternData\\brPatterns.txt").delete();
+
+        PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("src\\tracks\\levelGeneration\\patternConstructive\\PatternData\\avatarPatterns.txt", true)));
+        for(int i = 0; i < avatarPatterns.size(); i++){
+            out.println(avatarPatterns.get(i));
+        }
+        out.close();
+
+        out = new PrintWriter(new BufferedWriter(new FileWriter("src\\tracks\\levelGeneration\\patternConstructive\\PatternData\\bottomAvatarPatterns.txt", true)));
+        for(int i = 0; i < bottomAvatarPatterns.size(); i++){
+            out.println(bottomAvatarPatterns.get(i));
+        }
+        out.close();
+
+        out = new PrintWriter(new BufferedWriter(new FileWriter("src\\tracks\\levelGeneration\\patternConstructive\\PatternData\\openBottomPatterns.txt", true)));
+        for(int i = 0; i < openBottomPatterns.size(); i++){
+            out.println(openBottomPatterns.get(i));
+        }
+        out.close();
+
+        out = new PrintWriter(new BufferedWriter(new FileWriter("src\\tracks\\levelGeneration\\patternConstructive\\PatternData\\topWallPatterns.txt", true)));
+        for(int i = 0; i < topWallPatterns.size(); i++){
+            out.println(topWallPatterns.get(i));
+        }
+        out.close();
+
+        out = new PrintWriter(new BufferedWriter(new FileWriter("src\\tracks\\levelGeneration\\patternConstructive\\PatternData\\bottomWallPatterns.txt", true)));
+        for(int i = 0; i < bottomWallPatterns.size(); i++){
+            out.println(bottomWallPatterns.get(i));
+        }
+        out.close();
+
+        out = new PrintWriter(new BufferedWriter(new FileWriter("src\\tracks\\levelGeneration\\patternConstructive\\PatternData\\leftWallPatterns.txt", true)));
+        for(int i = 0; i < leftWallPatterns.size(); i++){
+            out.println(leftWallPatterns.get(i));
+        }
+        out.close();
+
+        out = new PrintWriter(new BufferedWriter(new FileWriter("src\\tracks\\levelGeneration\\patternConstructive\\PatternData\\rightWallPatterns.txt", true)));
+        for(int i = 0; i < rightWallPatterns.size(); i++){
+            out.println(rightWallPatterns.get(i));
+        }
+        out.close();
+
+        out = new PrintWriter(new BufferedWriter(new FileWriter("src\\tracks\\levelGeneration\\patternConstructive\\PatternData\\tlPatterns.txt", true)));
+        for(int i = 0; i < tlPatterns.size(); i++){
+            out.println(tlPatterns.get(i));
+        }
+        out.close();
+
+        out = new PrintWriter(new BufferedWriter(new FileWriter("src\\tracks\\levelGeneration\\patternConstructive\\PatternData\\trPatterns.txt", true)));
+        for(int i = 0; i < trPatterns.size(); i++){
+            out.println(trPatterns.get(i));
+        }
+        out.close();
+
+        out = new PrintWriter(new BufferedWriter(new FileWriter("src\\tracks\\levelGeneration\\patternConstructive\\PatternData\\blPatterns.txt", true)));
+        for(int i = 0; i < blPatterns.size(); i++){
+            out.println(blPatterns.get(i));
+        }
+        out.close();
+
+        out = new PrintWriter(new BufferedWriter(new FileWriter("src\\tracks\\levelGeneration\\patternConstructive\\PatternData\\brPatterns.txt", true)));
+        for(int i = 0; i < brPatterns.size(); i++){
+            out.println(brPatterns.get(i));
+        }
+        out.close();
+        System.out.println(patternCount);
     }
 
     public static void main(String[] args) throws IOException {
 
         PatternLoader myLoader = new PatternLoader();
-        //myLoader.convertLevelsToCodes();
+        myLoader.convertLevelsToCodes();
+        myLoader.writePatternsIndexesToFile();
+//        myLoader.removeAllSingleOccurrences();    TODO: Figure out if removing singles will affect the output meaningfully enough to merit rearranging all the code
         myLoader.printPatternStatistics();
-
     }
 
 }

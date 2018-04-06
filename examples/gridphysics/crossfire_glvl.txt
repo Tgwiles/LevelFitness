@@ -1,16 +1,20 @@
 LevelMapping
-    a > wall 
-    b > turret 
-    c > avatar 
-    d > goal 
+    A > avatar floor 
+    t > turret floor 
+    w > wall 
+    g > goal floor 
+    . > floor 
 
 LevelDescription
-aaaaaaa
-a   a a
-a aaa a
-a   b a
-a   c a
-a     a
-a     a
-a   d a
-aaaaaaa
+wwwwwwwwwwww
+www..w...www
+www..w...w.w
+wwwww......w
+w...w....ttw
+w...w....ttw
+www..g...www
+wwwwwwwwwt.w
+www..Awww.ww
+www...wgwwww
+www...wggwww
+wwwwwwwwwwww

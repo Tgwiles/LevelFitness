@@ -1,0 +1,24 @@
+LevelMapping
+    p > rawpasta floor 
+    A > avatar floor 
+    b > boilingwater floor 
+    t > tuna floor 
+    w > wall 
+    k > key floor 
+    l > lock floor 
+    . > floor 
+    o > tomato floor 
+
+LevelDescription
+wwwwwwopb
+w....kt.t
+w..p..k.o
+w.kwww..w
+w..b..b.w
+wbo.ppwww
+w...wAllw
+w...w.llw
+w...w.llw
+kbkwwwwww
+ppowwwwww
+ptowwwwww

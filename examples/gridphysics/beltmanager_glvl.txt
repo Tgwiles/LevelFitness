@@ -1,32 +1,24 @@
 LevelMapping
-    a > wall 
-    b > jointRight 
-    c > leverDown 
-    d > passenger 
-    e > leverUp 
-    f > avatar 
-    g > floor 
-    h > death 
-    i > leverRight 
-    j > leverLeft 
-    k > suitcase 
+    p > floor passenger 
+    A > avatar floor 
+    1 > leverUp floor 
+    2 > leverRight floor 
+    b > belt 
+    3 > leverDown floor 
+    s > belt suitcase 
+    4 > leverLeft floor 
+    d > floor death 
+    w > wall 
+    j > jointRight belt 
+    . > floor 
 
 LevelDescription
-aaaaaaaaaaaaaaa
-abc           a
-a             a
-a       def   a
-a        e    a
-a gh          a
-a   i      e  a
-a     aaac    a
-aj  i     i   a
-a  haaaa      a
-a           i a
-a             a
-a        h    a
-a k      j   ja
-a           b a
-ah b  ig  g   a
-a  c          a
-aaaaaaaaaaaaaaa
+www21dwww
+wwwj4dwww
+www432www
+wwwwwwdd1
+wwwpps13d
+wwwsAb344
+ww4wwwwww
+ww4w22www
+wwwwwwwww

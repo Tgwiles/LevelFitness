@@ -1,0 +1,22 @@
+LevelMapping
+    @ > crate white 
+    A > inWhite white 
+    b > inBlack black 
+    t > target black 
+    u > target white 
+    w > wall 
+    g > grey 
+    * > crate black 
+    + > white 
+    . > black 
+
+LevelDescription
++..+.+gggg*g
+gggggggggg@g
+gggggggggggg
+gggggggggggg
+gggggggggggg
+ggggggggg+.+
+gggggggggggg
+gggggg++tggg
+gggggggg+ggg

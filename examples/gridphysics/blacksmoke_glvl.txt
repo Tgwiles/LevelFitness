@@ -1,28 +1,21 @@
 LevelMapping
-    a > wall 
-    b > avatar 
-    c > box 
-    d > exit 
-    e > death 
-    f > key 
-    g > lock 
+    A > avatar ground death 
+    b > box ground death 
+    c > death 
+    d > smoke death 
+    e > exit ground 
+    w > wall 
+    k > key ground death 
+    l > lock ground death 
+    . > ground death 
 
 LevelDescription
-aaaaaaaaaaaaaa
-a           ba
-a  c c       a
-a       aaaa a
-a       dcd  a
-a            a
-a       ee   a
-a d        f a
-a         f  a
-a   f       ca
-a            a
-ag      d    a
-af      g    a
-a           fa
-a          d a
-a           fa
-a         e  a
-aaaaaaaaaaaaaa
+wwwwwwwww
+wwwbkbwkw
+wwwkkbkww
+wkbeeewww
+wkbkeewww
+wkkkeAwww
+wwwkkbwww
+wwwbbbwww
+wwwwwwwww

@@ -1,35 +1,24 @@
 LevelMapping
-    a > wall 
-    b > mediumL 
-    c > slowR 
-    d > mediumR 
-    e > slowL 
-    f > randomCamel 
-    g > fastR 
-    h > goal 
-    i > winnerPlayer 
-    j > winnerNPC 
-    k > fastL 
-    l > left 
+    A > right floor 
+    r > randomCamel floor 
+    B > left floor 
+    s > slowL floor 
+    t > slowR floor 
+    f > fastL floor 
+    w > wall 
+    g > goal floor 
+    h > fastR floor 
+    m > mediumL floor 
+    n > mediumR floor 
+    . > floor 
 
 LevelDescription
-aaaaaaaaaaaaaaa
-a        b   ca
-a             a
-a         b   a
-a       d     a
-a    c        a
-ae            a
-a   f         a
-a        aaaaga
-a h   h       a
-ai          j a
-a      kc     a
-aj aaa        a
-ai           ba
-a b           a
-a      d b    a
-a aaafd   e   a
-a  el         a
-af   h    c   a
-aaaaaaaaaaaaaaa
+ffnwwwhtf
+rsnwwwrgf
+htswwwstm
+www..B..w
+www.....w
+www.....w
+w..h..www
+w.....www
+wwwfrgwww

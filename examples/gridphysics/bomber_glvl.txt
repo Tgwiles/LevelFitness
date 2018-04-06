@@ -1,0 +1,23 @@
+LevelMapping
+    A > avatar ground 
+    1 > lcup ground 
+    b > bomb ground 
+    2 > lcright ground 
+    3 > lcdown ground 
+    4 > lcleft ground 
+    e > box ground 
+    w > wall 
+    g > goal ground 
+    , > ground 
+    . > water 
+
+LevelDescription
+www231www
+www4,2www
+www1,,www
+1,,w4Awww
+4,,ww3www
+2,,wwwwww
+1e2wwwwww
+123,,,www
+443wwwwww

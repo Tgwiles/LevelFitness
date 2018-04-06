@@ -1,0 +1,27 @@
+LevelMapping
+    A > avatar floor 
+    1 > inc1 floor 
+    2 > inc2 floor 
+    3 > inc3 floor 
+    C > avatar inc1 inc2 floor 
+    c > chef floor 
+    4 > inc4 floor 
+    t > table floor 
+    5 > inc5 floor 
+    6 > inc6 floor 
+    w > wall 
+    . > floor 
+
+LevelDescription
+wwwtttwww
+w66tttwww
+www662www
+w65...www
+w6.44.www
+w666..www
+w6.221www
+www3256Aw
+w..115.6w
+www.6.ttt
+www6..ttt
+wwwwwwttt

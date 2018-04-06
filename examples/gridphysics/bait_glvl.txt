@@ -1,19 +1,20 @@
 LevelMapping
-    a > wall 
-    b > goal 
-    c > box 
-    d > hole 
-    e > withkey 
-    f > nokey 
-    g > mushroom 
+    0 > hole floor 
+    A > nokey floor 
+    1 > box floor 
+    w > wall 
+    g > goal floor 
+    k > key floor 
+    m > mushroom floor 
+    . > floor 
 
 LevelDescription
-aaaaaaaaaaaaaa
-a     b  c  ba
-a          c a
-a    aaaaa   a
-a         deba
-a       f g  a
-ac      d    a
-a            a
-aaaaaaaaaaaaaa
+wwwwww111www
+w...11.11www
+w.......1www
+w........www
+w...1..A.www
+w...11...www
+111..1www..1
+111...www..1
+111wwwwww111

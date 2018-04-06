@@ -1,26 +1,25 @@
 LevelMapping
-    a > wall 
-    b > boulder 
-    c > exit 
-    d > blue 
-    e > door 
-    f > avatar 
-    g > green 
-    h > red 
+    A > avatar floor 
+    r > red floor 
+    b > blue floor 
+    d > door floor 
+    e > exit floor 
+    w > wall 
+    g > green floor 
+    k > key floor 
+    . > floor 
+    O > boulder floor 
 
 LevelDescription
-aaaaaaaaaaaa
-a          a
-a          a
-a  bcd   e a
-a     b  f a
-a  aaaa    a
-a        b a
-a       c ba
-a     e    a
-a g d   dd a
-a      he  a
-a          a
-a          a
-a          a
-aaaaaaaaaaaa
+OOdwwwwwwkdO
+Odkddkw....d
+kkk.dkwA...O
+O........www
+k..........w
+k..........w
+dkd.....dwww
+kdd...O.kwww
+Okd...Okkwww
+kdOw..O..www
+Okdwbb...www
+kOOwwwdkkwww

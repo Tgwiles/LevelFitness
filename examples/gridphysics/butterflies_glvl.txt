@@ -1,0 +1,20 @@
+LevelMapping
+    0 > floor cocoon 
+    A > floor avatar 
+    1 > floor butterfly 
+    w > floor wall 
+    . > floor 
+
+LevelDescription
+wwwwwwwwwwww
+wwwA00.01www
+www.00wwwwww
+w.0www..00.w
+wwww.000...w
+w..w0..00..w
+wwww.0..0w0w
+w0ww0.wwww.w
+w.ww00.0.00w
+ww.www..0www
+ww...w0.0www
+wwwwwwwwwwww

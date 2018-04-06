@@ -1,22 +1,27 @@
 LevelMapping
-    a > wall 
-    b > sitting 
-    c > exit2 
-    d > random 
-    e > entry1 
-    f > avatar 
-    g > goal 
+    A > floor avatar 
+    r > floor random 
+    2 > floor entry2 
+    3 > floor exit2 
+    v > floor vertical 
+    w > floor wall 
+    g > floor goal 
+    h > floor horizontal 
+    x > floor sitting 
+    i > floor entry1 
+    + > floor 
+    o > floor exit1 
 
 LevelDescription
-aaaaaaaaaaaaaaaaaa
-a b              a
-aaaaa           ca
-a                a
-a                a
-a      d  b      a
-a       e   f    a
-a b     b g      a
-a           c  g a
-a     c          a
-a                a
-aaaaaaaaaaaaaaaaaa
+wwwwwwwwwwww
+w++++++++www
+w++www+++www
+wwwwwwwwwwww
+w+++++ogiwww
+www+++hhvwww
+wwwwwwwwwwww
+www++A+++++w
+wwwwww+w+2+w
+www+++ggwwww
+www+++grw+gw
+wwwwwwwwwwww

@@ -1,31 +1,26 @@
 LevelMapping
-    a > wall 
-    b > wallBreak 
-    c > spider 
-    d > scorpion 
-    e > goal 
-    f > background 
-    g > bat 
-    h > bomberman 
+    A > background bomberman 
+    q > background wallBreak 
+    b > background bat 
+    s > background spider 
+    c > background scorpion 
+    w > wall 
+    g > background goal wallBreak 
+    . > background 
 
 LevelDescription
-aaaaaaaaaaaaaaaaaaaa
-a    b c           a
-a                aaa
-a        d       a a
-a        e       a a
-a                  a
-a             d  c a
-a                f a
-a                  a
-a          f g     a
-a    d             a
-a  f               a
-a  f               a
-a           d      a
-a                c a
-a      e           a
-a g            b   a
-ah                 a
-a                  a
-aaaaaaaaaaaaaaaaaaaa
+wwwwwwwwwwwwwwwwww
+wwwqqqwww...wwwwww
+wwwqqqwww...wwwwww
+wwwccwwwwqww.....w
+www......qww.....w
+wwwwwwwwwqwq.....w
+wwww.w....gq...www
+w..w.w.....q.w..ww
+w........qqq....ww
+wwg.......wwwwwgww
+wwg.......ww...gww
+wwg.A.....ww...gww
+w...........www..w
+w...A.......www..w
+wwwwwwwwwwwwwwwwww

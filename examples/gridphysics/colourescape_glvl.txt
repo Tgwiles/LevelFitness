@@ -1,0 +1,25 @@
+LevelMapping
+    A > normalAvatar floor 
+    a > normalSwitch floor 
+    b > blueSwitch floor 
+    c > redSwitch floor 
+    d > greenSwitch floor 
+    h > hole floor 
+    . > floor 
+    1 > box floor 
+    2 > bluebox floor 
+    3 > redbox floor 
+    4 > greenbox floor 
+    w > wall 
+    x > exit floor 
+
+LevelDescription
+4bawwwwww
+a23...www
+1d3...www
+3.....www
+chh...www
+3hh..A..w
+wwwxxxwww
+wwwxxxwww
+wwwwwwwww

@@ -1,35 +1,31 @@
 LevelMapping
-    a > wall 
-    b > lineright 
-    c > assembly2 
-    d > lineup 
-    e > avatar 
-    f > vortex 
-    g > goal 
-    h > assembly3 
-    i > portal 
-    j > victory 
-    k > linedown 
-    l > assembly1 
+    A > floor avatar 
+    d > floor lcdown 
+    g > floor goal 
+    l > floor lcleft 
+    . > floor 
+    p > floor portal 
+    1 > floor assembly1 linedown 
+    r > floor lcright 
+    2 > floor assembly2 lineright 
+    3 > floor assembly3 linedown 
+    4 > floor assembly1 lineright 
+    u > floor lcup 
+    5 > floor assembly2 lineup 
+    v > floor vortex 
+    6 > floor assembly3 lineleft 
+    w > wall 
+    7 > floor assembly2 linedown 
+    8 > floor assembly1 lineleft 
+    9 > floor assembly3 lineright 
 
 LevelDescription
-aaaaaaaaaaaaaaaaaaaa
-a                  a
-a      b           a
-ac d bb       e    a
-a     f   g        a
-a b      hb        a
-a      b     i     a
-a                  a
-a       jd b       a
-a       j   k     ba
-a    k    aaaaa    a
-a   g          g   a
-a                  a
-a  a l hg    ic    a
-a  a   c           a
-aaaa k             a
-a     d            a
-ab    k       k    a
-a       l    l b   a
-aaaaaaaaaaaaaaaaaaaa
+485r73www
+595391www
+55295.www
+999619wp1
+87773.w18
+446wwww.8
+241..2www
+897vldwww
+6.878rwww

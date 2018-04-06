@@ -1,0 +1,22 @@
+LevelMapping
+    0 > gem floor 
+    A > avatar floor 
+    1 > gold floor 
+    e > entrance floor 
+    w > wall floor 
+    m > monster floor 
+    . > floor 
+
+LevelDescription
+1.1eme....1.
+........11w.
+1w1emm.w..1.
+wee..1111...
+w1ew.1w.1.11
+w1m11111w...
+....w...1...
+.1..w..111.1
+.01.w..111.A
+000.11mww.1w
+www.11mww.1.
+www.1..wwwww

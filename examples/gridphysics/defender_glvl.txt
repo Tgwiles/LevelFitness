@@ -1,25 +1,19 @@
 LevelMapping
-    a > wall 
-    b > portalSlow 
-    c > portalFast 
-    d > portalAmmo 
-    e > avatar 
-    f > city 
+    0 > city floor 
+    A > avatar supply floor 
+    1 > portalSlow floor 
+    2 > portalFast floor 
+    3 > portalAmmo floor 
+    w > wall 
+    . > floor 
 
 LevelDescription
-aaaaaaaaaaa
-a   b     a
-a         a
-a         a
-a         a
-a   aaa   a
-ac   d    a
-a  c      a
-a c   b e a
-a  aaa    a
-a  a      a
-a aaa    da
-a  b     fa
-a         a
-ad        a
-aaaaaaaaaaa
+wwwwwwwww
+www.30www
+www01.www
+www..0.0w
+www1.0.ww
+wwwA30www
+www001www
+www000www
+wwwwwwwww
