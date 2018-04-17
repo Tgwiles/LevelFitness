@@ -41,6 +41,7 @@ public class LevelGenerator extends AbstractLevelGenerator{
     ArrayList<Integer> brPatterns;
 
     boolean hasAvatar;
+    boolean connectivityBail;
 
 
     public LevelGenerator(GameDescription game, ElapsedCpuTimer elapsedCpuTimer){
@@ -59,7 +60,7 @@ public class LevelGenerator extends AbstractLevelGenerator{
         blPatterns = new ArrayList<Integer>();
         brPatterns = new ArrayList<Integer>();
         hasAvatar = false;
-
+        connectivityBail = false;
 
     }
 
@@ -98,7 +99,7 @@ public class LevelGenerator extends AbstractLevelGenerator{
         //populate unknown translations
         for (int i = 0; i <codes.size(); i++){
             if (codeMap.get(codes.get(i)).size() == 0){
-                System.out.println("Finding a map for " + codes.get(i));
+//                System.out.println("Finding a map for " + codes.get(i));
                 codeMap.get(codes.get(i)).addAll(bestMapping(codes.get(i)));
             }
         }
@@ -388,7 +389,12 @@ public class LevelGenerator extends AbstractLevelGenerator{
 
 
     private String construct() throws IOException {
+        float time = System.nanoTime();
+        connectivityBail = false;
+
         loadPatternIndices();
+
+//        System.out.println(System.nanoTime() - time);
 
         Scanner readFile = new Scanner(new FileReader("src\\tracks\\levelGeneration\\patternConstructive\\PatternData\\patternFile.txt"));
         StringBuilder sb = new StringBuilder();
@@ -456,7 +462,7 @@ public class LevelGenerator extends AbstractLevelGenerator{
             Random randGen = new Random();
             int randomX = randGen.nextInt((width/3)-2) + 1;
             int randomY = randGen.nextInt((height/3)-2) + 1;
-            System.out.println("Avatar manually placed at pattern " + randomX + ", " + randomY);
+//            System.out.println("Avatar manually placed at pattern " + randomX + ", " + randomY);
             patternsChosen[randomX][randomY] = avatarPatterns.get(randGen.nextInt(avatarPatterns.size()));
             while(!checkConnectivity(patternsChosen, width, height, pString)){
                 patternsChosen[randomX][randomY] = avatarPatterns.get(randGen.nextInt(avatarPatterns.size()));
@@ -490,8 +496,122 @@ public class LevelGenerator extends AbstractLevelGenerator{
 //                System.out.println("Pattern Number: " + patternsChosen[j][i] + ", " + pString.substring(patternsChosen[j][i]*9, (patternsChosen[j][i]*9) +9));
 //            }
 //        }
-        System.out.println("Typed Level");
-        System.out.println(outputBuilder.toString());
+//        System.out.println("Typed Level");
+//        System.out.println(outputBuilder.toString());
+
+
+        return outputBuilder.toString();
+    }
+
+    private String construct(int width, int height) throws IOException {
+
+        loadPatternIndices();
+        connectivityBail = false;
+
+
+        Scanner readFile = new Scanner(new FileReader("src\\tracks\\levelGeneration\\patternConstructive\\PatternData\\patternFile.txt"));
+        StringBuilder sb = new StringBuilder();
+
+//        System.out.println("Reading from file and making pString...");
+        while(readFile.hasNext()){
+            sb.append(readFile.next());
+        }
+        readFile.close();
+        String pString = sb.toString();
+
+        int[][] patternsChosen = new int[width/3][height/3];
+        hasAvatar = false;
+
+//        System.out.println("Simulating board and filling in patterns...");
+        //simulate fully empty board, filling it in as patterns are added, after each addition check connectivity
+        for (int i = 0; i < width/3; i++){
+            for (int j = 0; j < height/3; j++){
+                patternsChosen[i][j] = -1;
+            }
+        }
+
+
+//        System.out.println("filling in borders...");
+        //build borders
+        patternsChosen = fillBorders(patternsChosen, width, height, pString);
+
+//        System.out.println("Accounting for horizontal avatars...");
+        //if horizontal moving avatar, put it at the bottom and remove any existing avatars
+        if (gameAnalyzer.horzAvatar.contains(gameDescription.getAvatar().get(0).type)){
+            Random randGen = new Random();
+            int randNum = randGen.nextInt(width/3);
+            for (int i = 0; i < (width / 3); i++){
+                if (i == randNum){
+                    if (hasAvatar){ //if an avatar has been placed in the border already, remake the border(hasAvatar will be true resulting in none being placed)
+                        patternsChosen = fillBorders(patternsChosen, width, height, pString);
+                    }
+                    //place avatar
+                    patternsChosen[i][(height/3)-1] = bottomAvatarPatterns.get(randGen.nextInt(bottomAvatarPatterns.size()));
+                    while(!checkConnectivity(patternsChosen, width, height, pString)){
+                        patternsChosen[i][(height/3)-1] = bottomAvatarPatterns.get(randGen.nextInt(bottomAvatarPatterns.size()));
+                    }
+                    hasAvatar = true;
+                }
+                else{
+                    patternsChosen[i][(height/3)-1] = randomDissimilarNumber(openBottomPatterns, avatarPatterns);
+                    while(!checkConnectivity(patternsChosen, width, height, pString)){
+                        patternsChosen[i][(height/3)-1] = randomDissimilarNumber(openBottomPatterns, avatarPatterns);
+                    }
+                }
+            }
+        }
+        //Fill middle randomly
+        for(int i = 1; i < (width/3) - 1; i++){
+            for(int j = 1; j < (height/3) - 1; j++){
+                patternsChosen[i][j] = findRandomValidPattern(pString);
+                while(!checkConnectivity(patternsChosen, width, height, pString)){
+                    if (avatarPatterns.contains(patternsChosen[i][j])) hasAvatar = false;
+                    patternsChosen[i][j] = findRandomValidPattern(pString);
+                }
+            }
+        }
+        //Ensure avatar is placed, if none place randomly in middle
+        if (!hasAvatar){
+            Random randGen = new Random();
+            int randomX = randGen.nextInt((width/3)-2) + 1;
+            int randomY = randGen.nextInt((height/3)-2) + 1;
+//            System.out.println("Avatar manually placed at pattern " + randomX + ", " + randomY);
+            patternsChosen[randomX][randomY] = avatarPatterns.get(randGen.nextInt(avatarPatterns.size()));
+            while(!checkConnectivity(patternsChosen, width, height, pString)){
+                patternsChosen[randomX][randomY] = avatarPatterns.get(randGen.nextInt(avatarPatterns.size()));
+            }
+
+        }
+
+//        System.out.println("converting pattern index to string...");
+        //Convert pattern index array to string
+        StringBuilder outputBuilder = new StringBuilder();
+        for(int i = 0; i < height / 3; i++) {
+            //go over on each row and add the three characters from the appropriate pattern
+            for (int j = 0; j < width / 3; j++) {
+                outputBuilder.append(pString.substring(patternsChosen[j][i]*9, (patternsChosen[j][i]*9)+3));
+            }
+            outputBuilder.append("\n");
+            for (int j = 0; j < width / 3; j++) {
+                outputBuilder.append(pString.substring((patternsChosen[j][i]*9)+3, (patternsChosen[j][i]*9)+6));
+            }
+            outputBuilder.append("\n");
+            for (int j = 0; j < width / 3; j++) {
+                outputBuilder.append(pString.substring((patternsChosen[j][i]*9)+6, (patternsChosen[j][i]*9)+9));
+            }
+            outputBuilder.append("\n");
+        }
+
+        //Fix goals
+
+//        System.out.println("Patterns chosen");
+//        for (int i = 0; i < height/3; i++) {
+//            for (int j = 0; j < width / 3; j++) {
+//                System.out.println("Pattern Number: " + patternsChosen[j][i] + ", " + pString.substring(patternsChosen[j][i]*9, (patternsChosen[j][i]*9) +9));
+//            }
+//        }
+//        System.out.println("Typed Level");
+//        System.out.println(outputBuilder.toString());
 
 
         return outputBuilder.toString();
@@ -516,6 +636,10 @@ public class LevelGenerator extends AbstractLevelGenerator{
     private boolean checkConnectivity(int[][] patternsChosen, int width, int height, String pString){
         //build simulated board
         char[][] simulatedBoard = new char[width][height];
+
+        if(connectivityBail){
+            return true;
+        }
 
         //fill with O's if pattern = -1
         //fill will proper pattern if not
@@ -583,6 +707,7 @@ public class LevelGenerator extends AbstractLevelGenerator{
     private int[][] fillBorders(int[][] patternsChosen, int width, int height, String pString){
         if (gameAnalyzer.getSolidSprites().size() > 0){
             //fill non corner tops and bottoms
+            System.out.println("Step 1");
             for(int i = 1; i < (width/3) -1 ; i++){
                 patternsChosen[i][0] = findValidPattern(topWallPatterns);
                 while(!checkConnectivity(patternsChosen, width, height, pString)){
@@ -595,6 +720,7 @@ public class LevelGenerator extends AbstractLevelGenerator{
                     patternsChosen[i][(height / 3) - 1] = findValidPattern(bottomWallPatterns);
                 }
             }
+            System.out.println("Step 2");
             //fill non corner sides
             for(int i = 1; i < (height/3) -1 ; i++){
                 patternsChosen[0][i] = findValidPattern(leftWallPatterns);
@@ -609,27 +735,60 @@ public class LevelGenerator extends AbstractLevelGenerator{
                 }
             }
             //fill in corners
-
+            System.out.println("Step 3");
             patternsChosen[0][0] = findValidPattern(tlPatterns);
+            ArrayList<Integer> validPatterns = tlPatterns;
             while(!checkConnectivity(patternsChosen, width, height, pString)){
+                validPatterns.remove(validPatterns.indexOf(patternsChosen[0][0]));
                 if (avatarPatterns.contains(patternsChosen[0][0])) hasAvatar = false;
-                patternsChosen[0][0] = findValidPattern(tlPatterns);
+                if(validPatterns.size() < 10){
+                    connectivityBail = true;
+                    break;
+                }
+                System.out.println(validPatterns.size());
+                patternsChosen[0][0] = findValidPattern(validPatterns);
+                System.out.println("looking for tl patterns");
             }
             patternsChosen[(width/3)-1][0] = findValidPattern(trPatterns);
+            validPatterns = trPatterns;
             while(!checkConnectivity(patternsChosen, width, height, pString)){
+                validPatterns.remove(validPatterns.indexOf(patternsChosen[(width/3)-1][0]));
                 if (avatarPatterns.contains(patternsChosen[(width/3)-1][0])) hasAvatar = false;
-                patternsChosen[(width/3)-1][0] = findValidPattern(trPatterns);
+                if(validPatterns.size() < 10){
+                    connectivityBail = true;
+                    break;
+                }
+                System.out.println(validPatterns.size());
+                patternsChosen[(width/3)-1][0] = findValidPattern(validPatterns);
+                System.out.println("looking for tr patterns");
             }
             patternsChosen[0][(height/3)-1] = findValidPattern(blPatterns);
+            validPatterns = blPatterns;
             while(!checkConnectivity(patternsChosen, width, height, pString)){
+                validPatterns.remove(validPatterns.indexOf(patternsChosen[0][(height/3)-1]));
                 if (avatarPatterns.contains(patternsChosen[0][(height/3)-1])) hasAvatar = false;
-                patternsChosen[0][(height/3)-1] = findValidPattern(blPatterns);
+                if(validPatterns.size() < 10){
+                    connectivityBail = true;
+                    break;
+                }
+                System.out.println(validPatterns.size());
+                patternsChosen[0][(height/3)-1] = findValidPattern(validPatterns);
+                System.out.println("looking for bl patterns");
             }
             patternsChosen[(width/3)-1][(height/3)-1] = findValidPattern(brPatterns);
+            validPatterns = brPatterns;
             while(!checkConnectivity(patternsChosen, width, height, pString)){
+                validPatterns.remove(validPatterns.indexOf(patternsChosen[(width/3)-1][(height/3)-1]));
                 if (avatarPatterns.contains(patternsChosen[(width/3)-1][(height/3)-1])) hasAvatar = false;
-                patternsChosen[(width/3)-1][(height/3)-1] = findValidPattern(brPatterns);
+                if(validPatterns.size() < 10){
+                    connectivityBail = true;
+                    break;
+                }
+                System.out.println(validPatterns.size());
+                patternsChosen[(width/3)-1][(height/3)-1] = findValidPattern(validPatterns);
+                System.out.println("looking for br patterns");
             }
+            System.out.println("Found one!");
 
         } else {
             //fill in borders with random patterns
@@ -660,7 +819,7 @@ public class LevelGenerator extends AbstractLevelGenerator{
             }
         }
 
-
+        System.out.println("Actually chose a pattern");
         return patternsChosen;
     }
 
@@ -698,6 +857,19 @@ public class LevelGenerator extends AbstractLevelGenerator{
 
     private void loadPatternIndices() throws IOException {
         Scanner readFile;
+
+        avatarPatterns.clear();
+        bottomAvatarPatterns.clear();
+        bottomWallPatterns.clear();
+        openBottomPatterns.clear();
+        topWallPatterns.clear();
+        bottomWallPatterns.clear();
+        leftWallPatterns.clear();
+        rightWallPatterns.clear();
+        trPatterns.clear();
+        tlPatterns.clear();
+        brPatterns.clear();
+        blPatterns.clear();
 
         readFile = new Scanner(new FileReader("src\\tracks\\levelGeneration\\patternConstructive\\PatternData\\avatarPatterns.txt"));
         while(readFile.hasNextLine()){
@@ -774,7 +946,7 @@ public class LevelGenerator extends AbstractLevelGenerator{
         if(randGen.nextInt(2) == 1){
             return 15;
         } else {
-            return 18;
+            return 12;
         }
     }
 
@@ -877,14 +1049,14 @@ public class LevelGenerator extends AbstractLevelGenerator{
             - Find the difference between the expected # and the current #
             - add sprites to random free positions until correct # is reached
          */
-        System.out.println(numObjects.keySet());
+//        System.out.println(numObjects.keySet());
         for(GameDescription.TerminationData ter: terminationData){
             int desiredNum = ter.limit;
             int currentNum = 0;
             int increase = 0;
 
             for(String spriteName: ter.sprites){
-                System.out.println(spriteName);
+//                System.out.println(spriteName);
                 if(!gameAnalyzer.getAvatarSprites().contains(spriteName)){
                     if(numObjects.keySet().contains(spriteName)){
                         currentNum += numObjects.get(spriteName);
@@ -915,7 +1087,7 @@ public class LevelGenerator extends AbstractLevelGenerator{
                     int index = rand.nextInt(freePositions.size());
                     Coordinate coord = freePositions.remove(index);
                     levelArray[coord.xPos][coord.yPos] = foundMappings.get(rand.nextInt(foundMappings.size()));
-                    System.out.println("Added: " + levelArray[coord.xPos][coord.yPos] + " at " + coord.xPos + " " + coord.yPos);
+//                    System.out.println("Added: " + levelArray[coord.xPos][coord.yPos] + " at " + coord.xPos + " " + coord.yPos);
                 }
             }
         }
@@ -934,8 +1106,21 @@ public class LevelGenerator extends AbstractLevelGenerator{
     public String generateLevel(GameDescription game, ElapsedCpuTimer elapsedTimer) {
         try{
             codeMapping = getCodeMapping();
-            System.out.println(codeMapping);
+//            System.out.println(codeMapping);
             return fixGoals(convertTypeLevelToGameLevel(construct())); // construct the level, then convert it from its type to a playable level, the fix any termination values
+        }catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "Error";
+    }
+
+    public String generateLevel(GameDescription game, ElapsedCpuTimer elapsedTimer, int width, int height) {
+        try{
+            codeMapping = getCodeMapping();
+//            System.out.println(codeMapping);
+            return fixGoals(convertTypeLevelToGameLevel(construct(width, height))); // construct the level, then convert it from its type to a playable level, the fix any termination values
         }catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

@@ -1,0 +1,26 @@
+LevelMapping
+    a > wall 
+    b > background 
+    c > wallBreak background 
+    d > wallBreak goal background 
+    e > bat background 
+    f > scorpion background 
+    g > spider background 
+    h > bomberman wallBreak background 
+
+LevelDescription
+aaaaaaaaaaaaaaa
+aaabbbcacbbbbba
+aaabbbbaabbdeba
+aadbbbaaafagaaa
+aadbbbbbfgagbba
+aadbbbbbbaaaaaa
+ahcaaaccccccbba
+accbbbbbbcbbeba
+aaabbbbbbbbaaaa
+abbdfebbbbbbaaa
+abbdddbbbbbbaaa
+abbaaabbbbabbba
+aaabbabbbbbabba
+aaaaaaabbbbbaaa
+aaaaaaaaaaaaaaa
