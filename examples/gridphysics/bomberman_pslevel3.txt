@@ -1,15 +1,19 @@
-wwwwwwwwwwwwwww
-wwwcbc......www
-wwwbsc...wwwwww
-wwg...w.w...www
-wwg.....w...www
-wwg...www...www
-wqwwwwwgq.qw..w
-w.....w......ww
-w.....www.qwwww
-www......qqqgww
-www.......Aqgww
-wwwwwww.wqqqgww
-wwwggg..wwww..w
-wwwwww...www..w
-wwwwwwwwwwwwwww
+function mutate(){
+
+	if random number < probability of mutation {
+	
+		randomly select chunk to replace
+		
+		if selected chunk is a border {
+			randomly replace with chunk of same border type 
+		} else {
+			randomly replace with other pattern
+		}
+		
+	} else {
+		swap two non-border chunks
+	}
+	
+	fix level goals()
+}
+

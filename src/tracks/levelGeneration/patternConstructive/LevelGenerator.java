@@ -1129,6 +1129,8 @@ public class LevelGenerator extends AbstractLevelGenerator{
         return "Error";
     }
 
+
+
     @Override
     public HashMap<Character, ArrayList<String>> getLevelMapping(){return gameDescription.getLevelMapping();}
 }

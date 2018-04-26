@@ -223,10 +223,10 @@ public class PatternLoader {
                     if (convertMappingToCode(levelChars[k], myGame.getCharMapping()) == '?') System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"); //warning for unidentified mapping type
                 }
                 String codedLevel = levelCodes.toString().replace(",", "").replace(" ", "").replace("[", "").replace("]", "");
-                //System.out.println("--------------Before-----------");
-                //System.out.println(levelString);
-                //System.out.println("--------------After-----------");
-                //System.out.println(codedLevel);
+                System.out.println("--------------Before-----------");
+                System.out.println(levelString);
+                System.out.println("--------------After-----------");
+                System.out.println(codedLevel);
 
                 PrintWriter out = new PrintWriter("src\\tracks\\levelGeneration\\patternConstructive\\ConvertedLevels\\" + allGames.get(i) + j);
                 out.print(codedLevel);
@@ -545,7 +545,7 @@ public class PatternLoader {
         myLoader.convertLevelsToCodes();
         myLoader.writePatternsIndexesToFile();
 //        myLoader.removeAllSingleOccurrences();    TODO: Figure out if removing singles will affect the output meaningfully enough to merit rearranging all the code
-        myLoader.printPatternStatistics();
+//        myLoader.printPatternStatistics();
     }
 
 }

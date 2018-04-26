@@ -34,12 +34,12 @@ public class Test {
 		int seed = new Random().nextInt();
 
 		// Game and level to play
-		int gameIdx = 9; //9, 42,100
+		int gameIdx = 100; //9, 42,100
 		int levelIdx = 0; // level names from 0 to 4 (game_lvlN.txt).
 		String gameName = games[gameIdx][1];
 		String game = games[gameIdx][0];
 		String level1 = game.replace(gameName, gameName + "_lvl" + levelIdx);
-		String testGenLevel = "examples/surveyLevels/newSearch/bomberman_" + "level4" + ".txt";
+		String testGenLevel = "examples/surveyLevels/oldSearch/zelda_level4" + ".txt";
 		String recordActionsFile = null;// "actions_" + games[gameIdx] + "_lvl"
 		// + levelIdx + "_" + seed + ".txt";
 		// where to record the actions

@@ -1,13 +1,24 @@
-wwwwwwwwwwwwww
-w.........3..w
-wwwwww3......w
-w.........2..w
-w.....2......w
-w..g.........w
-w............w
-w............w
-w............w
-w......+....Aw
-w2...........w
-w............w
-wwwwwwwwwwwwww
+LevelMapping
+    a > wall 
+    b > monsterSlow 
+    c > monsterNormal 
+    d > key 
+    e > goal 
+    f > monsterQuick 
+    g > nokey 
+
+LevelDescription
+aaaaaaaaaaaa
+a  b cdb   a
+a          a
+a          a
+a          a
+a       c  a
+a     aaaaaa
+a         ea
+a          a
+a          a
+a          a
+a f     g  a
+a          a
+aaaaaaaaaaaa
